@@ -1,11 +1,9 @@
 package com.waihai.yaiagent.app;
 
-import com.waihai.common.enums.LogLevelEnum;
 import com.waihai.yaiagent.advisor.LoggerAdvisor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
-import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.chat.model.ChatModel;
@@ -36,7 +34,7 @@ public class JavaMentorApp {
                 .defaultSystem(SYSTEM_PROMPT)
                 .defaultAdvisors(
                         new MessageChatMemoryAdvisor(chatMemory),
-                        new LoggerAdvisor(LogLevelEnum.INFO.getLevel())
+                        new LoggerAdvisor()
                 )
                 .build();
     }

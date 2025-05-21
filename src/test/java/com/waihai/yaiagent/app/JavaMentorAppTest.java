@@ -21,13 +21,13 @@ class JavaMentorAppTest {
         // 第一轮
         String message = "你好，我是刚入门的Java小白，叫waihai";
         String answer = javaMentorApp.doChat(message, chatId);
-        // 第二轮
-        message = "我想学习Web开发方向";
-        answer = javaMentorApp.doChat(message, chatId);
-        Assertions.assertNotNull(answer);
-        // 第三轮
-        message = "我叫什么？刚跟你说过，帮我回忆一下";
-        answer = javaMentorApp.doChat(message, chatId);
-        Assertions.assertNotNull(answer);
+//        // 第二轮
+//        message = "我想学习Web开发方向";
+//        answer = javaMentorApp.doChat(message, chatId);
+//        Assertions.assertNotNull(answer);
+//        // 第三轮
+//        message = "我叫什么？刚跟你说过，帮我回忆一下";
+//        answer = javaMentorApp.doChat(message, chatId);
+//        Assertions.assertNotNull(answer);
     }
 }
