@@ -10,6 +10,8 @@ import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY;
 import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor.CHAT_MEMORY_RETRIEVE_SIZE_KEY;
 
@@ -48,8 +50,46 @@ public class JavaMentorApp {
                 .call()
                 .chatResponse();
 
-        String content = chatResponse.getResult().getOutput().getText();
-        log.info("content: {}", content);
-        return content;
+        return chatResponse.getResult().getOutput().getText();
+    }
+
+    record AdviceReport(String title, List<String> suggestions){}
+
+    public AdviceReport structOutputChat(String message, String chatId) {
+        AdviceReport adviceReport = chatClient
+                .prompt()
+                .user(message + "每次对话后都生成建议报告，标题为【用户名】的建议报告，内容为建议列表")
+                .advisors(spec -> spec.param(CHAT_MEMORY_CONVERSATION_ID_KEY, chatId)
+                        .param(CHAT_MEMORY_RETRIEVE_SIZE_KEY, 10))
+                .call()
+                .entity(AdviceReport.class);
+        return adviceReport;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -30,4 +30,13 @@ class JavaMentorAppTest {
 //        answer = javaMentorApp.doChat(message, chatId);
 //        Assertions.assertNotNull(answer);
     }
+
+    @Test
+    void testStruct() {
+        String chatId = UUID.randomUUID().toString();
+        // 第一轮
+        String message = "你好，我是刚入门的Java小白，叫waihai，我想学习web开发方向，如何开始。";
+        JavaMentorApp.AdviceReport adviceReport = javaMentorApp.structOutputChat(message, chatId);
+        Assertions.assertNotNull(adviceReport);
+    }
 }
